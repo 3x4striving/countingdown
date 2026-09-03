@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelola Acara — Counting Down</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2b060b">
+<link rel="icon" href="assets/img/logo-striving.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="pita" aria-hidden="true"></div>
+
+<div class="bingkai admin">
+
+  <header class="admin-kepala">
+    <h1>Kelola Acara</h1>
+    <a class="tautan" href="index.html">← Lihat halaman Counting Down</a>
+  </header>
+
+  <!-- ---------- Sambungan ke GitHub ---------- -->
+  <section class="kartu" id="kartuKoneksi">
+    <h2>Sambungan ke GitHub</h2>
+    <p class="petunjuk">
+      Diisi sekali saja di setiap perangkat. Cara membuat token ada di
+      <strong>README</strong> repo — pakai <em>fine-grained token</em> yang dibatasi
+      hanya untuk repo ini, dengan izin <em>Contents: Read and write</em>.
+    </p>
+
+    <div class="kisi">
+      <div>
+        <label class="medan" for="fOwner">Pemilik (username)</label>
+        <input type="text" id="fOwner" placeholder="misal: labkomputerg3" autocomplete="off" spellcheck="false">
+      </div>
+      <div>
+        <label class="medan" for="fRepo">Nama repo</label>
+        <input type="text" id="fRepo" placeholder="counting-down" autocomplete="off" spellcheck="false">
+      </div>
+      <div>
+        <label class="medan" for="fCabang">Cabang</label>
+        <input type="text" id="fCabang" placeholder="main" autocomplete="off" spellcheck="false">
+      </div>
+      <div>
+        <label class="medan" for="fToken">Token</label>
+        <input type="password" id="fToken" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="deret-tombol">
+      <label class="kotak-centang">
+        <input type="checkbox" id="fIngat">
+        <span>Ingat di perangkat ini</span>
+      </label>
+      <button class="tombol utama" id="btnSambung">Sambungkan &amp; muat data</button>
+      <button class="tombol" id="btnLupakan">Lupakan token</button>
+    </div>
+
+    <p class="catatan-aman">
+      Jangan centang “Ingat di perangkat ini” kalau memakai komputer bersama —
+      tanpa dicentang, token hanya bertahan selama tab ini terbuka.
+      Token tidak pernah ikut tersimpan ke dalam website; ia hanya berada di browser ini.
+    </p>
+
+    <div id="pesanKoneksi"></div>
+  </section>
+
+  <!-- ---------- Judul halaman ---------- -->
+  <section class="kartu">
+    <h2>Tulisan di Halaman Depan</h2>
+    <p class="petunjuk">Kalimat yang tampil di bagian atas dan bawah halaman santri.</p>
+    <div class="kisi">
+      <div>
+        <label class="medan" for="fJudul">Judul</label>
+        <input type="text" id="fJudul" placeholder="Counting Down">
+      </div>
+      <div style="grid-column:1 / -1">
+        <label class="medan" for="fSubjudul">Subjudul</label>
+        <input type="text" id="fSubjudul" placeholder="Rangkaian Acara Akhir Tahun — …">
+      </div>
+      <div style="grid-column:1 / -1">
+        <label class="medan" for="fTagline">Tagline (bawah halaman)</label>
+        <input type="text" id="fTagline" placeholder="Forever Striving for an Authentic Masterpiece">
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Daftar acara ---------- -->
+  <section class="kartu">
+    <h2>Daftar Acara <span id="jumlahAcara" style="font-size:14px;color:var(--emas-500)"></span></h2>
+    <p class="petunjuk">
+      Kolom <strong>jam</strong> dan <strong>keterangan</strong> boleh dikosongkan.
+      Tanpa jam, hitung mundurnya menuju pukul 00.00 hari itu.
+      Urutannya dirapikan sendiri menurut tanggal saat disimpan.
+    </p>
+
+    <div class="tabel-acara">
+      <div class="tabel-kepala">
+        <div>Tanggal</div><div>Jam</div><div>Nama acara</div><div>Keterangan</div><div></div>
+      </div>
+      <div id="barisAcara"></div>
+    </div>
+
+    <div class="deret-tombol">
+      <button class="tombol" id="btnTambah">+ Tambah acara</button>
+      <button class="tombol utama" id="btnSimpan">Simpan ke GitHub</button>
+      <button class="tombol" id="btnUnduh">Unduh events.json</button>
+      <button class="tombol" id="btnMuatUlang">Muat ulang dari GitHub</button>
+    </div>
+
+    <div id="pesanSimpan"></div>
+  </section>
+
+  <!-- ---------- Pratinjau ---------- -->
+  <section class="kartu">
+    <h2>Pratinjau</h2>
+    <p class="petunjuk">Beginilah daftarnya akan terlihat oleh santri hari ini.</p>
+    <div id="pratinjau"></div>
+  </section>
+
+  <footer class="kaki">
+    <p class="kaki-info">Counting Down · Striving 3 INT &amp; 4 2026 Gontor 3</p>
+  </footer>
+
+</div>
+
+<div class="pita pita-bawah" aria-hidden="true"></div>
+
+<script src="assets/app.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>

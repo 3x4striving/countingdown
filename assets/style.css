@@ -1,0 +1,533 @@
+/* ============================================================
+   Counting Down — Striving 3 INT & 4 2026 Gontor 3
+   Palet diambil langsung dari poster "Countdown Branding baru":
+   kartu maroon #3c070d, krem #fefff1, aksen oranye #ff9b57.
+   Berkas ini dipakai index.html DAN admin.html.
+   ============================================================ */
+
+:root{
+  --maroon-950:#170305;
+  --maroon-900:#25060a;
+  --maroon-850:#310710;
+  --maroon-800:#3c070d;
+  --maroon-700:#521320;
+
+  --emas-100:#fbf3dd;
+  --emas-300:#e8c77a;
+  --emas-500:#c9a45c;
+  --emas-700:#9a7638;
+
+  --krem:#fefff1;
+  --ember:#ff9b57;
+
+  --garis:rgba(232,199,122,0.22);
+  --garis-kuat:rgba(232,199,122,0.45);
+
+  --serif:'Cormorant Garamond', 'Georgia', serif;
+  --sans:'Work Sans', 'Segoe UI', system-ui, sans-serif;
+
+  --lebar:960px;
+  --radius:14px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+/* display:flex/grid pada elemen di bawah mengalahkan [hidden] bawaan browser */
+[hidden]{ display:none !important; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  position:relative;              /* jangkar untuk .hias-bawah */
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(1100px 620px at 12% -8%,  rgba(154,118,56,0.22), transparent 62%),
+    radial-gradient(1000px 700px at 92% 108%, rgba(154,118,56,0.18), transparent 58%),
+    var(--maroon-950);
+  color:var(--krem);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img{ max-width:100%; height:auto; }
+
+/* ---------- Pita motif atas & bawah ---------- */
+.pita{
+  height:34px;
+  background:url("img/pattern-tile.webp") repeat-x center / auto 100%;
+  opacity:0.85;
+}
+.pita-bawah{ transform:scaleY(-1); }
+
+/* ---------- Awan hias di latar tulisan ----------
+   Satu lapis awan yang menempel pada layar (bukan pada dokumen), jadi ia tetap
+   jadi latar sepanjang halaman digulir — persis peran awan di poster: tekstur
+   di belakang teks, bukan gambar yang ikut mengalir.
+   `cover` dipakai supaya komposisi awan (kiri atas, kiri bawah, kanan bawah)
+   tetap utuh di layar selebar apa pun. */
+.awan{
+  position:fixed;
+  inset:0;
+  background:url("img/awan.webp") no-repeat center / cover;
+  opacity:0.16;
+  pointer-events:none;
+  z-index:0;
+}
+/* Di layar tegak, `cover` membesarkan gambar 16:9 sampai 2-3 kali dan awannya
+   berubah jadi noda buram. Di sana lebarnya dipatok lalu diulang ke bawah —
+   aman karena awan di berkas sumber tidak menyentuh tepi atas/bawah kanvas,
+   jadi sambungan ubinnya jatuh di ruang kosong dan tak terlihat. */
+@media (max-aspect-ratio: 1/1){
+  .awan{ background-size:190% auto; background-position:center top; background-repeat:repeat-y; }
+}
+
+/* ---------- Ornamen pita emas ----------
+   Acuan pemakaian ada di referensi/"Contoh penggunaan hias kiri dan kanan.jpg":
+   keduanya duduk di SUDUT BAWAH halaman, menempel tepi, opacity penuh — bukan
+   melayang samar di kiri-atas/kanan-atas. Karena itu ornamen ditempel ke dasar
+   dokumen (absolute pada body).
+
+   Pitanya jatuh sampai tepi paling bawah halaman, MENIMPA pita motif — begitu
+   gambarnya dibuat: isi berkas sumber terpotong rata di tepi bawah kanvas, jadi
+   memang dirancang meluber ke luar bingkai, sama seperti di poster. Urutan
+   tumpukannya diatur dari urutan DOM di index.html, bukan dari z-index. */
+.hias-bawah{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:0;                       /* wadah tanpa tinggi; gambar digantung dari sini */
+  z-index:0;
+  pointer-events:none;
+  user-select:none;
+}
+/* Diukur lewat LEBAR dalam vw tanpa batas atas. Pita ini digambar menempel sudut
+   kanvas poster selebar 3840px (isi kiri 38% lebar kanvas, kanan 42%), jadi vw
+   murni membuat komposisinya sama di layar selebar apa pun — dipatok piksel,
+   dasar halaman malah menganga di monitor lebar. Angkanya sengaja ~1,15x proporsi
+   poster supaya dasar halaman terisi lebih penuh. */
+.ornamen{
+  position:absolute;
+  bottom:0;
+  max-width:none;
+  height:auto;
+}
+.ornamen-kiri { left:0;  width:44vw; }
+.ornamen-kanan{ right:0; width:48vw; }
+
+/* ---------- Kerangka halaman ---------- */
+.bingkai{
+  position:relative;
+  z-index:1;
+  max-width:var(--lebar);
+  margin:0 auto;
+  padding:0 20px 64px;
+}
+/* Ruang di dasar halaman beranda supaya tagline tidak bertumpuk dengan ornamen
+   emas di kedua sudut bawah. Halaman admin tidak memakainya. */
+.bingkai.beranda{ padding-bottom:clamp(150px, 16vw, 210px); }
+
+/* ---------- Kepala ---------- */
+.kepala{
+  text-align:center;
+  padding:44px 0 30px;
+  border-bottom:1px solid var(--garis);
+}
+.logo{
+  width:min(280px, 62vw);
+  height:auto;
+  filter:drop-shadow(0 4px 18px rgba(201,164,92,0.35));
+  margin-bottom:18px;
+}
+h1{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(44px, 10vw, 82px);
+  line-height:0.95;
+  letter-spacing:0.01em;
+  margin:0 0 14px;
+  color:var(--emas-100);
+  text-shadow:0 2px 26px rgba(201,164,92,0.3);
+}
+.subjudul{
+  max-width:620px;
+  margin:0 auto;
+  font-size:15px;
+  line-height:1.6;
+  color:var(--emas-300);
+}
+
+/* ---------- Hero countdown ---------- */
+.hero{
+  text-align:center;
+  padding:46px 0 40px;
+}
+.hero-label{
+  margin:0 0 8px;
+  font-size:12px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--emas-500);
+}
+.hero-acara{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(25px, 5vw, 40px);
+  line-height:1.15;
+  margin:0 0 8px;
+  color:var(--krem);
+}
+.hero-tanggal{
+  margin:0 0 34px;
+  font-size:14px;
+  color:var(--emas-500);
+}
+
+.timer{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:clamp(6px, 2vw, 16px);
+}
+.unit{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-width:clamp(64px, 18vw, 108px);
+  padding:14px 6px 10px;
+  border:1px solid var(--garis);
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(232,199,122,0.10), rgba(232,199,122,0.02));
+}
+.angka{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(38px, 9vw, 68px);
+  line-height:1;
+  color:var(--emas-100);
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum";
+}
+.satuan{
+  margin-top:8px;
+  font-size:10.5px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--emas-500);
+}
+.pemisah{
+  font-family:var(--serif);
+  font-size:clamp(26px, 6vw, 44px);
+  line-height:1;
+  color:var(--emas-700);
+  padding-top:16px;
+}
+
+.penanda{
+  display:inline-block;
+  margin:26px 0 0;
+  padding:10px 24px;
+  border:1px solid var(--ember);
+  border-radius:999px;
+  background:rgba(255,155,87,0.12);
+  color:var(--krem);
+  font-size:14px;
+  font-weight:500;
+}
+.penanda.selesai{
+  border-color:var(--garis-kuat);
+  background:rgba(232,199,122,0.08);
+  color:var(--emas-300);
+}
+
+/* ---------- Bar kemajuan ---------- */
+.kemajuan{ padding:6px 0 34px; }
+.kemajuan-teks{
+  display:flex;
+  justify-content:center;
+  font-size:12.5px;
+  letter-spacing:0.04em;
+  color:var(--emas-500);
+  margin-bottom:10px;
+}
+.kemajuan-bar{
+  height:4px;
+  border-radius:999px;
+  background:rgba(232,199,122,0.14);
+  overflow:hidden;
+}
+.kemajuan-isi{
+  height:100%;
+  width:0;
+  border-radius:999px;
+  background:linear-gradient(90deg, var(--emas-700), var(--emas-300));
+  transition:width 0.6s ease;
+}
+
+/* ---------- Daftar acara ---------- */
+.daftar-kepala{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--garis);
+  margin-bottom:8px;
+}
+.daftar-kepala h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:27px;
+  margin:0;
+  color:var(--emas-100);
+}
+.saklar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:var(--emas-500);
+  cursor:pointer;
+  user-select:none;
+}
+.saklar input{ accent-color:var(--emas-500); width:15px; height:15px; cursor:pointer; }
+
+.bulan{
+  margin:26px 0 6px;
+  font-size:11.5px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--emas-700);
+}
+
+.baris{
+  display:grid;
+  grid-template-columns:58px 1fr auto;
+  gap:16px;
+  align-items:center;
+  padding:15px 10px;
+  border-bottom:1px solid var(--garis);
+  border-radius:10px;
+}
+.baris.lewat{ opacity:0.42; }
+.baris.berikut{
+  background:linear-gradient(90deg, rgba(232,199,122,0.13), rgba(232,199,122,0.03));
+  border:1px solid var(--garis-kuat);
+}
+.baris.kini{
+  background:linear-gradient(90deg, rgba(255,155,87,0.16), rgba(255,155,87,0.03));
+  border:1px solid rgba(255,155,87,0.5);
+}
+
+.kotak-tanggal{ text-align:center; }
+.kotak-tanggal .hari{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:27px;
+  line-height:1;
+  color:var(--emas-100);
+}
+.kotak-tanggal .bln{
+  margin-top:3px;
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--emas-500);
+}
+
+.info .nama{ font-size:15.5px; font-weight:500; color:var(--krem); }
+.info .meta{ font-size:12.5px; color:var(--emas-700); margin-top:3px; }
+
+.lencana{
+  font-size:12.5px;
+  font-weight:500;
+  padding:6px 14px;
+  border-radius:999px;
+  white-space:nowrap;
+  border:1px solid var(--emas-700);
+  color:var(--emas-300);
+}
+.lencana.kini{ background:var(--ember); border-color:var(--ember); color:var(--maroon-900); font-weight:600; }
+.lencana.berikut{ background:var(--emas-500); border-color:var(--emas-500); color:var(--maroon-950); font-weight:600; }
+.lencana.selesai{ border-color:var(--garis); color:var(--emas-700); }
+
+.kosong{ text-align:center; color:var(--emas-700); font-size:14px; padding:26px 0; }
+
+/* ---------- Kaki ---------- */
+.kaki{
+  text-align:center;
+  padding:52px 0 8px;
+  border-top:1px solid var(--garis);
+  margin-top:34px;
+}
+.tagline{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(18px, 3.4vw, 24px);
+  color:var(--emas-300);
+  margin:0 0 10px;
+}
+.kaki-info{ font-size:11.5px; letter-spacing:0.06em; color:var(--emas-700); margin:0; }
+
+/* ============================================================
+   Halaman admin
+   ============================================================ */
+.admin{ max-width:1040px; }
+
+.admin-kepala{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:26px 0 18px;
+  border-bottom:1px solid var(--garis);
+}
+.admin-kepala h1{ font-size:clamp(28px,5vw,42px); margin:0; }
+.admin-kepala .tautan{ font-size:13px; color:var(--emas-300); }
+
+.kartu{
+  border:1px solid var(--garis);
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(232,199,122,0.06), rgba(232,199,122,0.015));
+  padding:22px;
+  margin-top:22px;
+}
+.kartu h2{
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:600;
+  margin:0 0 4px;
+  color:var(--emas-100);
+}
+.kartu .petunjuk{ font-size:13px; color:var(--emas-500); margin:0 0 18px; line-height:1.6; }
+
+.kisi{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); }
+
+label.medan{ display:block; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--emas-500); margin-bottom:6px; }
+
+input[type=text], input[type=date], input[type=time], input[type=password], textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--garis);
+  border-radius:9px;
+  background:rgba(0,0,0,0.28);
+  color:var(--krem);
+  font-family:var(--sans);
+  font-size:14.5px;
+}
+input:focus, textarea:focus{ outline:2px solid var(--emas-500); outline-offset:1px; }
+input::placeholder{ color:rgba(232,199,122,0.35); }
+textarea{ resize:vertical; min-height:64px; }
+
+.tombol{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 20px;
+  border:1px solid var(--emas-500);
+  border-radius:999px;
+  background:transparent;
+  color:var(--emas-100);
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:background 0.15s ease, transform 0.1s ease;
+}
+.tombol:hover{ background:rgba(232,199,122,0.12); }
+.tombol:active{ transform:translateY(1px); }
+.tombol.utama{ background:var(--emas-500); border-color:var(--emas-500); color:var(--maroon-950); font-weight:600; }
+.tombol.utama:hover{ background:var(--emas-300); }
+.tombol.bahaya{ border-color:rgba(255,155,87,0.55); color:var(--ember); padding:7px 14px; font-size:13px; }
+.tombol.bahaya:hover{ background:rgba(255,155,87,0.12); }
+.tombol:disabled{ opacity:0.45; cursor:not-allowed; }
+
+.deret-tombol{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:20px; }
+
+.kotak-centang{ display:flex; align-items:center; gap:9px; font-size:13.5px; color:var(--emas-300); cursor:pointer; }
+.kotak-centang input{ accent-color:var(--emas-500); width:16px; height:16px; }
+
+.tabel-acara{ margin-top:6px; }
+.tabel-kepala, .tabel-baris{
+  display:grid;
+  grid-template-columns:150px 96px 1fr 1fr 92px;
+  gap:10px;
+  align-items:center;
+}
+.tabel-kepala{
+  font-size:11px;
+  letter-spacing:0.13em;
+  text-transform:uppercase;
+  color:var(--emas-700);
+  padding:0 4px 10px;
+  border-bottom:1px solid var(--garis);
+}
+.tabel-baris{ padding:9px 4px; border-bottom:1px solid rgba(232,199,122,0.1); }
+.tabel-baris.lewat input{ opacity:0.55; }
+
+.pesan{
+  margin-top:18px;
+  padding:13px 16px;
+  border-radius:10px;
+  font-size:14px;
+  line-height:1.55;
+  border:1px solid var(--garis);
+}
+.pesan.sukses{ border-color:rgba(140,200,140,0.5); background:rgba(120,200,120,0.1); color:#d7f0d2; }
+.pesan.galat  { border-color:rgba(255,120,90,0.55); background:rgba(255,120,90,0.1); color:#ffd6c6; }
+.pesan.info   { border-color:var(--garis-kuat); background:rgba(232,199,122,0.08); color:var(--emas-100); }
+.pesan a{ color:var(--emas-300); }
+
+.catatan-aman{
+  margin-top:14px;
+  font-size:12.5px;
+  line-height:1.65;
+  color:var(--emas-700);
+  border-left:2px solid var(--emas-700);
+  padding-left:12px;
+}
+
+/* ---------- Layar kecil ---------- */
+@media (max-width:760px){
+  /* Kedua ornamen tetap dipakai — pasangan kiri-kanan itu bagian dari komposisi;
+     yang dikecilkan cuma lebarnya supaya tidak saling menindih di tengah. */
+  /* Di layar sempit pitanya dibesarkan sampai saling bertemu di tengah — kalau
+     ikut proporsi desktop, tingginya cuma ±70px dan dasar halaman jadi kosong. */
+  .ornamen-kiri { width:64vw; }
+  .ornamen-kanan{ width:68vw; }
+  .bingkai.beranda{ padding-bottom:calc(26vw + 40px); }
+  .awan{ opacity:0.13; }
+  .tabel-kepala{ display:none; }
+  .tabel-baris{
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:16px 4px;
+    border-bottom:1px solid var(--garis);
+  }
+  .tabel-baris .aksi{ justify-self:start; }
+}
+
+@media (max-width:480px){
+  .baris{ grid-template-columns:46px 1fr auto; gap:11px; padding:13px 6px; }
+  .unit{ padding:10px 4px 8px; }
+  .satuan{ font-size:9.5px; letter-spacing:0.1em; }
+  .kartu{ padding:18px 15px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition-duration:0.01ms !important; animation-duration:0.01ms !important; }
+}
+
+@media print{
+  .hias-bawah, .awan, .pita, .saklar{ display:none; }
+  .bingkai.beranda{ padding-bottom:24px; }
+  body{ background:#fff; color:#000; }
+}

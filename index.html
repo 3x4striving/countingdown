@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counting Down — Striving 2026</title>
+<meta name="description" content="Hitung mundur rangkaian acara akhir tahun Striving 3 INT &amp; 4 2026 Gontor 3: Public Speaking, Volksong, Haflatu Tilawatil Qur'an, Kibar Show, Mugus &amp; ACE.">
+<meta name="theme-color" content="#2b060b">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Counting Down — Striving 2026">
+<meta property="og:description" content="Hitung mundur rangkaian acara akhir tahun Striving 3 INT & 4 2026 Gontor 3.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/logo-striving.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="awan" aria-hidden="true"></div>
+
+<div class="pita" aria-hidden="true"></div>
+
+<div class="bingkai beranda">
+
+  <header class="kepala">
+    <picture>
+      <source srcset="assets/img/logo-striving.webp" type="image/webp">
+      <img class="logo" src="assets/img/logo-striving.png" alt="Striving 3 INT &amp; 4 2026 Gontor 3" width="900" height="252">
+    </picture>
+    <h1 id="judul">Counting Down</h1>
+    <p class="subjudul" id="subjudul"></p>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="labelHero">
+      <p class="hero-label" id="labelHero">Menuju</p>
+      <h2 class="hero-acara" id="heroAcara">Memuat…</h2>
+      <p class="hero-tanggal" id="heroTanggal">&nbsp;</p>
+
+      <div class="timer" id="timer" role="timer" aria-live="off">
+        <div class="unit"><span class="angka" id="tHari">00</span><span class="satuan">Hari</span></div>
+        <span class="pemisah" aria-hidden="true">:</span>
+        <div class="unit"><span class="angka" id="tJam">00</span><span class="satuan">Jam</span></div>
+        <span class="pemisah" aria-hidden="true">:</span>
+        <div class="unit"><span class="angka" id="tMenit">00</span><span class="satuan">Menit</span></div>
+        <span class="pemisah" aria-hidden="true">:</span>
+        <div class="unit"><span class="angka" id="tDetik">00</span><span class="satuan">Detik</span></div>
+      </div>
+
+      <p class="penanda" id="penanda" hidden></p>
+    </section>
+
+    <section class="kemajuan" aria-label="Kemajuan rangkaian acara">
+      <div class="kemajuan-teks"><span id="kemajuanLabel">&nbsp;</span></div>
+      <div class="kemajuan-bar"><div class="kemajuan-isi" id="kemajuanIsi"></div></div>
+    </section>
+
+    <section class="daftar" aria-labelledby="judulDaftar">
+      <div class="daftar-kepala">
+        <h2 id="judulDaftar">Seluruh Acara</h2>
+        <label class="saklar">
+          <input type="checkbox" id="saklarLewat">
+          <span>Sembunyikan yang sudah lewat</span>
+        </label>
+      </div>
+      <div id="daftarAcara"></div>
+      <p class="kosong" id="daftarKosong" hidden>Tidak ada acara yang ditampilkan.</p>
+    </section>
+  </main>
+
+  <footer class="kaki">
+    <p class="tagline" id="tagline"></p>
+    <p class="kaki-info">Copyright Threexfour 2026 STRIVING</p>
+  </footer>
+
+</div>
+
+<div class="pita pita-bawah" aria-hidden="true"></div>
+
+<!-- HARUS ditulis SESUDAH .pita-bawah. Pita itu ber-`opacity:0.85`, dan elemen
+     ber-opacity dilukis seolah-olah punya z-index:0 — jadi di antara sesama
+     z-index:0 yang menentukan siapa di atas hanyalah urutan DOM. Kalau ornamen
+     ditulis lebih dulu, pita menimpanya dan ujung pita emas terpotong. -->
+<div class="hias-bawah" aria-hidden="true">
+  <!-- width/height wajib ada: tanpa rasio bawaan ini, tinggi gambar 0 selama
+       belum termuat dan tata letak dasar halaman melompat saat gambarnya masuk. -->
+  <img class="ornamen ornamen-kiri"  src="assets/img/hias-kiri.webp"  alt="" loading="lazy" width="1200" height="437">
+  <img class="ornamen ornamen-kanan" src="assets/img/hias-kanan.webp" alt="" loading="lazy" width="1200" height="459">
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
