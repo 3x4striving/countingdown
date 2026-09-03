@@ -4,23 +4,113 @@
   "tagline": "Forever Striving for an Authentic Masterpiece",
   "zona": "+07:00",
   "acara": [
-    { "nama": "Pembacaan Panitia PSC, Volksong, HTQ", "tanggal": "2026-09-02", "jam": "", "keterangan": "" },
-    { "nama": "Final Public Speaking", "tanggal": "2026-09-13", "jam": "", "keterangan": "" },
-    { "nama": "Gladi 1 Volksong", "tanggal": "2026-09-14", "jam": "", "keterangan": "" },
-    { "nama": "Gladi 2 Volksong", "tanggal": "2026-09-16", "jam": "", "keterangan": "" },
-    { "nama": "Vocal Group Among Hostel", "tanggal": "2026-09-18", "jam": "", "keterangan": "" },
-    { "nama": "Pembukaan Haflatu Tilawatil Qur'an", "tanggal": "2026-09-21", "jam": "", "keterangan": "" },
-    { "nama": "Final 1 Haflatu Tilawatil Qur'an", "tanggal": "2026-10-04", "jam": "", "keterangan": "" },
-    { "nama": "Final 2 Haflatu Tilawatil Qur'an", "tanggal": "2026-10-06", "jam": "", "keterangan": "" },
-    { "nama": "Malam Puncak HTQ", "tanggal": "2026-10-12", "jam": "", "keterangan": "" },
-    { "nama": "Pembacaan Panitia Kibar Show", "tanggal": "2026-10-16", "jam": "", "keterangan": "" },
-    { "nama": "Pemilihan Ketua Dema", "tanggal": "2026-11-01", "jam": "", "keterangan": "" },
-    { "nama": "PPL Perdana", "tanggal": "2026-11-05", "jam": "", "keterangan": "" },
-    { "nama": "Kibar Show", "tanggal": "2026-11-06", "jam": "", "keterangan": "" },
-    { "nama": "PPL Gelombang 1", "tanggal": "2026-11-12", "jam": "", "keterangan": "" },
-    { "nama": "Pembacaan Panitia Mugus & ACE", "tanggal": "2026-11-13", "jam": "", "keterangan": "" },
-    { "nama": "Musyawarah Gugusdepan (Mugus) — Hari 1", "tanggal": "2026-12-03", "jam": "", "keterangan": "" },
-    { "nama": "Musyawarah Gugusdepan (Mugus) — Hari 2", "tanggal": "2026-12-04", "jam": "", "keterangan": "" },
-    { "nama": "ACE — Ambalan Creativity Event", "tanggal": "2026-12-10", "jam": "", "keterangan": "" }
+    {
+      "nama": "Pembacaan Panitia PSC, Volksong, HTQ",
+      "tanggal": "2026-09-02",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Final Public Speaking",
+      "tanggal": "2026-09-13",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Gladi 1 Volksong",
+      "tanggal": "2026-09-14",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Gladi 2 Volksong",
+      "tanggal": "2026-09-16",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Vocal Group Among Hostel",
+      "tanggal": "2026-09-18",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Pembukaan Haflatu Tilawatil Qur'an",
+      "tanggal": "2026-09-21",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Final 1 Haflatu Tilawatil Qur'an",
+      "tanggal": "2026-10-04",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Final 2 Haflatu Tilawatil Qur'an",
+      "tanggal": "2026-10-06",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Malam Puncak HTQ",
+      "tanggal": "2026-10-12",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Pembacaan Panitia Kibar Show",
+      "tanggal": "2026-10-16",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Pemilihan Ketua Dema",
+      "tanggal": "2026-11-01",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "PPL Perdana",
+      "tanggal": "2026-11-05",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Kibar Show",
+      "tanggal": "2026-11-06",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "PPL Gelombang 1",
+      "tanggal": "2026-11-12",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Pembacaan Panitia Mugus & ACE",
+      "tanggal": "2026-11-13",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Musyawarah Gugusdepan (Mugus) — Hari 1",
+      "tanggal": "2026-12-03",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "Musyawarah Gugusdepan (Mugus) — Hari 2",
+      "tanggal": "2026-12-04",
+      "jam": "",
+      "keterangan": ""
+    },
+    {
+      "nama": "ACE — Ambalan Creativity Event",
+      "tanggal": "2026-12-10",
+      "jam": "",
+      "keterangan": ""
+    }
   ]
 }
